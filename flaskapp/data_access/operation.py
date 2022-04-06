@@ -3,20 +3,23 @@ from flaskapp.data_access.SqliteConnection import dbConnection
 def getAllMovements():
     conn = dbConnection.getConnection()
     cursor = conn.cursor()
-    movemenslist = cursor.execute("SELECT * FROM movimientos;")
-    list = cursorToDictionary(movemenslist)
+    cursor.execute('SELECT * FROM movimientos')
+    list = cursorToDictionary(cursor)
     return list
 
 def cursorToDictionary(cursor):
-    list = {}
+    list = []
     for row in cursor: 
-        list["id"] = row[0]
-        list["fecha"] = row[1]
-        list["hora"] = row[2]
-        list["moneda_from"] = row[3]
-        list["cantidad_from"] = row[4]
-        list["moneda_to"] = row[5]
-        list["cantidad_to"] = row[6]
+        movement = {}
+        movement["id"] = row[0]
+        movement["fecha"] = row[1]
+        movement["hora"] = row[2]
+        movement["moneda_from"] = row[3]
+        movement["cantidad_from"] = row[4]
+        movement["moneda_to"] = row[5]
+        movement["cantidad_to"] = row[6]
+        list.append(movement)
 
-    return list
+        return list
+
 
