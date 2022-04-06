@@ -5,6 +5,7 @@ def getAllMovements():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM movimientos')
     list = cursorToDictionary(cursor)
+    
     return list
 
 def cursorToDictionary(cursor):
@@ -19,7 +20,7 @@ def cursorToDictionary(cursor):
         movement["moneda_to"] = row[5]
         movement["cantidad_to"] = row[6]
         list.append(movement)
-
-        return list
+        
+    return list
 
 

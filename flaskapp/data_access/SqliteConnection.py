@@ -1,6 +1,6 @@
 import os  #permite manejar variables de entorno y otras operaciones del sistema 
 import sqlite3
-from flask import g#nos permite tenerel conetexto de la aplicacion
+from flask import g #nos permite tenerel conetexto de la aplicacion
 
 class dbConnection:
 

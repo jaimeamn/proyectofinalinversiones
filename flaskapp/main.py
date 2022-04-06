@@ -9,14 +9,15 @@ app = Flask(__name__, instance_relative_config=True)
 CORS(app)
 app.app_context().push()
 
+status = ""
+
 @app.route("/api/v1/movimientos", methods=['GET'])
 def getMovements():
-     status = ""
+     
      movements = operation.getAllMovements()
      if  len(movements) > 0:
          status = "success"
-     response = handleResponse(movements, status)
-         
+     response = handleResponse(movements, status)     
      return jsonify(response)
 
 
