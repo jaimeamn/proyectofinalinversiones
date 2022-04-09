@@ -5,6 +5,6 @@ table.movimientos {
     
 }
 
-.inactive {
-    display: none;
+.hide-form {
+    display: none !important;
 }

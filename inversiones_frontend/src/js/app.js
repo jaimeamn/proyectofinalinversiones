@@ -13,7 +13,6 @@
 
         data.data.forEach(element => {
 
-
             let tbodyConten =
                 `<tr> 
         <td> ${element.fecha} </td>
@@ -31,4 +30,48 @@
     }
 
     getMovements();
+
+    // peticion crear movimiento
+
+    function saveMovement() {
+        let data = getDataForm();
+        fetch('http://localhost:5000//api/v1/movimiento', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+              'Content-Type': 'application/json'
+            }})
+            .then(response => response.json())
+            .then(data => renderData("tbody-movimientos", data));
+    }
+
+// evento en boton ok envio de formulario al backend
+    let okButton = document.getElementById("ok");
+    okButton.addEventListener("click", saveMovement);
+
+    function getDataForm(){ 
+        let fromValue = document.getElementById("from").value;
+        let toValue = document.getElementById("to").value;
+        let quantityFromValue = document.getElementById("cantidad_from").value;
+        let quantityToValue = document.getElementById("cantidad_to").value;
+        return{ fromValue: fromValue,
+                 toValue: toValue,
+                 quantityFromValue:quantityFromValue,
+                 quantityToValue:quantityToValue
+
+        }
+    }
+
+//funcionalidad boton añadir movimiento
+    let addButton = document.getElementById("btn-alta");
+    addButton.addEventListener("click", showForm);
+
+     function showForm(){ 
+         let sectAddMovements = document.getElementById("movimiento-activo");
+         sectAddMovements.classList.remove("hide-form");
+
+
+
+
+     }
 })()

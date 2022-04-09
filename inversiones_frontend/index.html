@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/CSS/pico.css">
     <link rel="stylesheet" href="src/CSS/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title></title>
 </head>
 
@@ -39,35 +40,62 @@
             </thead>
             <tbody id="tbody-movimientos"> </tbody>
         </table>
-        <!--<button id="btn-alta">+</button>-->
+        <button id="btn-alta">+</button>
     </section>
-    <section id="movimiento-activo" class="container inactive">
-        <h2>Modificar movimiento</h2>
-        <form id="form-movimiento">
-            <input type="text" id="id" hidden>
-            <label for="fecha">Fecha:
-                    <input type="date" name="fecha" id="fecha">
+
+    <section id="movimiento-activo" class="container row justify-content-center hide-form" >
+        <h2>Nuevo Movimiento</h2>
+        <div class="col-4">
+            <label for="from">from:
+                <select name="from" id="from">
+                    <option value="">Seleccione una moneda</option>
+                    <option value="EUR"> EUR </option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="BNB">BNB</option>
+                    <option value="LUNA">LUNA</option>
+                    <option value="SOL">SOL</option>
+                    <option value="BCH">BCH</option>
+                    <option value="LINK">LINK</option>
+                    <option value="ATOM">ATOM</option>
+                    <option value="USDT">USDT</option>
+                </select>
+            </label>
+        <label for="cantidad_from">cantidad from:
+                <input type="number" name="cantidad_from" id="cantidad_from">
+            </label>
+            <button class = "btn btn-sm btn-primary d-inline" id="aceptar">Calcular</button>
+
+        </div>
+        <div class="col-4">
+            <label for="to">to:
+                <select name="to" id="to">
+                    <option value="">Seleccione una moneda</option>
+                    <option value="EUR"> EUR </option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="BNB">BNB</option>
+                    <option value="LUNA">LUNA</option>
+                    <option value="SOL">SOL</option>
+                    <option value="BCH">BCH</option>
+                    <option value="LINK">LINK</option>
+                    <option value="ATOM">ATOM</option>
+                    <option value="USDT">USDT</option>
+                    </select>
                 </label>
-            <label for="hora">Hora:
-                    <input type="time" name="hora" id="hora">
+            <label for="cantidad_to">cantidad to:
+                    <input type="number" name="cantidad_to" id="cantidad_to">
                 </label>
-            <label for="moneda_from">moneda_from:
-                    <input type="text" name="moneda_from" id="moneda_from">
-                </label>
-            <label for="cantidad_from">cantidad_from:
-                    <input type="number" name="cantidad_from" id="cantidad_from">Es ingreso
-                </label>
-            <label for="moneda_to">moneda_to:
-                    <input type="text" name="moneda_to" id="moneda_to">
-                </label>
-            <label for="cantidad_to">cantidad_to:
-                    <input type="number" name="moneda_to" id="moneda_to">
-                </label>
-            <div class="grid">
-                <button id="aceptar">Aceptar</button>
-                <button id="cancelar">Cancelar</button>
-            </div>
-        </form>
+                <div>
+                    <button class = "btn btn-sm btn-primary " id="ok">OK</button><br>
+                    <button class = "btn btn-sm btn-secondary " id="cancelar">Cancelar</button>
+                </div>
+        
+
+        </div>
+        
+        
+           
     </section>
     <footer>
         <div class="container">
