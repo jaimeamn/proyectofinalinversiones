@@ -34,8 +34,8 @@
     // peticion crear movimiento
 
     function saveMovement() {
-        let data = getDataForm();
-        fetch('http://localhost:5000//api/v1/movimiento', {
+        let data = {data:getDataForm()};
+        fetch('http://localhost:5000/api/v1/movimiento', {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
             headers:{
@@ -54,10 +54,10 @@
         let toValue = document.getElementById("to").value;
         let quantityFromValue = document.getElementById("cantidad_from").value;
         let quantityToValue = document.getElementById("cantidad_to").value;
-        return{ fromValue: fromValue,
-                 toValue: toValue,
-                 quantityFromValue:quantityFromValue,
-                 quantityToValue:quantityToValue
+        return{ moneda_from: fromValue,
+                 moneda_to: toValue,
+                 cantidad_from:quantityFromValue,
+                 cantidad_to:quantityToValue
 
         }
     }

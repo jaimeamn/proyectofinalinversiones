@@ -1,4 +1,6 @@
 from flaskapp.data_access.SqliteConnection import dbConnection
+from datetime import date
+from datetime import datetime
 
 def getAllMovements():
     conn = dbConnection.getConnection()
@@ -22,5 +24,30 @@ def cursorToDictionary(cursor):
         list.append(movement)
         
     return list
+
+def saveMovement(movement):
+    conn = dbConnection.getConnection()
+    cursor = conn.cursor()
+    query = ('INSERT INTO movimientos(fecha,hora,moneda_from,cantidad_from,moneda_to,cantidad_to) '
+         'VALUES (:fecha, :hora, :moneda_to, :cantidad_to, :moneda_from, :cantidad_from);')
+    
+    completeDate = str(datetime.now())
+    date = completeDate.split(" ")[0]
+    hour = completeDate.split(" ")[1]
+    
+    params = {
+            'fecha': date,
+            'hora': hour.split(".")[0],
+            'moneda_from': movement["moneda_from"],
+            'cantidad_from': movement["cantidad_from"],
+            'moneda_to': movement["moneda_to"],
+            'cantidad_to': movement["cantidad_to"]
+        }
+    cursor.execute(query, params)
+    conn.commit()
+    conn.close()
+
+
+
 
 

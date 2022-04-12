@@ -1,8 +1,7 @@
+from sqlite3 import Cursor
 from flask_cors import CORS
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flaskapp.data_access import operation
-
-
 
 
 app = Flask(__name__, instance_relative_config=True)
@@ -12,6 +11,7 @@ app.app_context().push()
 status = ""
 
 @app.route("/api/v1/movimientos", methods=['GET'])
+
 def getMovements():
      
      movements = operation.getAllMovements()
@@ -33,13 +33,25 @@ def handleResponse(body, status):
     
     return json
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 #@app.teardown_appcontext
 #def closedb():
 #   SqliteConnection.close_connection()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+@app.route("/api/v1/movimiento", methods=['POST'])
+
+def saveMovement():
+    data = request.get_json()
+    movement = data["data"]
+    operation.saveMovement(movement)
+    return "gurdado con exito"
+    
+
+
+
+
 
 
 
