@@ -43,9 +43,21 @@ def saveMovement(movement):
             'moneda_to': movement["moneda_to"],
             'cantidad_to': movement["cantidad_to"]
         }
+
     cursor.execute(query, params)
     conn.commit()
+    movement = getCreatedMovement(params)
     conn.close()
+    return movement
+
+def getCreatedMovement(params):
+    conn = dbConnection.getConnection()
+    cursor = conn.cursor()
+    query = ('SELECT * FROM movimientos WHERE fecha=? and hora=? and moneda_to=? and cantidad_to=? and moneda_from=? and cantidad_from=?')
+    cursor.execute(query, (params["fecha"], params["hora"], params["moneda_from"], params["cantidad_from"], params["moneda_to"], params["cantidad_to"]))
+    movement = cursor.fetchone()
+    return movement
+    
 
 
 

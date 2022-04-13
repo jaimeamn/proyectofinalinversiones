@@ -1,4 +1,4 @@
-(function() {
+(function(window) {
 
     function getMovements() {
         fetch('http://localhost:5000/api/v1/movimientos')
@@ -29,12 +29,15 @@
 
     }
 
-    getMovements();
+    window.addEventListener('load', function() {
+        getMovements();
+    });
 
     // peticion crear movimiento
 
     function saveMovement() {
         let data = {data:getDataForm()};
+        const client = new XMLHttpRequest();
         fetch('http://localhost:5000/api/v1/movimiento', {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
@@ -42,7 +45,8 @@
               'Content-Type': 'application/json'
             }})
             .then(response => response.json())
-            .then(data => renderData("tbody-movimientos", data));
+            .then(data => {console.log(data)});
+            
     }
 
 // evento en boton ok envio de formulario al backend
@@ -74,4 +78,4 @@
 
 
      }
-})()
+})(window)

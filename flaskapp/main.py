@@ -1,4 +1,6 @@
+from email import message
 from sqlite3 import Cursor
+from unittest import result
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from flaskapp.data_access import operation
@@ -45,8 +47,17 @@ if __name__ == '__main__':
 def saveMovement():
     data = request.get_json()
     movement = data["data"]
-    operation.saveMovement(movement)
-    return "gurdado con exito"
+    response = operation.saveMovement(movement)
+    messageValidation = {
+        "status": "success",
+        "id": response[0],
+        "monedas":  [response [3], response[5]]
+    }
+    return jsonify(messageValidation)
+
+
+    
+
     
 
 
