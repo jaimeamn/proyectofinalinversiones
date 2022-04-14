@@ -9,7 +9,7 @@ import os
 def getExchange(base, quota):
     urlBase = os.environ["COIN_API_URL_BASE"]
     fullUrl = str(urlBase + base + "/" + quota + "?" + "time" + "=" + datetime.now + "&" + "apikey" + "=" + os.environ["COIN_API_KEY"])
-    r = requests.get(fullUrl)
-    return r
+    rateresponse = requests.get(fullUrl)
+    return rateresponse
 
 

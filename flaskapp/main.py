@@ -4,6 +4,7 @@ from unittest import result
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from flaskapp.data_access import operation
+from flaskapp.adapter import coin_api_conection
 
 
 app = Flask(__name__, instance_relative_config=True)
@@ -54,6 +55,35 @@ def saveMovement():
         "monedas":  [response [3], response[5]]
     }
     return jsonify(messageValidation)
+
+@app.route("/api/v1/tipo_cambio", methods=['GET'])
+
+def getExchangeType():
+    currencyFrom = request.args.get("moneda_from")
+    currencyTo = request.args.get("moneda_to")
+    quantityFrom = request.args.get("cantidad_from")
+    resultExchance = coin_api_conection.getExchange(currencyFrom, currencyTo)
+    rate = resultExchance["rate"]
+    quantityTo = (int(quantityFrom) * float(rate))
+    message = {
+        "status": "success",
+        "data": {"tipo_cambio": "Precio unitario de la" + currencyTo + "en valor de" + currencyFrom,
+        
+        }     
+    }
+    return jsonify(message)
+
+
+
+
+
+
+
+
+
+     
+  
+
 
 
     
