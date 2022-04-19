@@ -1,11 +1,10 @@
 (function(window) {
-
+'use strict';
     function getMovements() {
         fetch('http://localhost:5000/api/v1/movimientos')
             .then(response => response.json())
             .then(data => renderData("tbody-movimientos", data));
     }
-
 
     function renderData(target, data) {
 
@@ -66,7 +65,7 @@
         }
     }
 
-//funcionalidad boton añadir movimiento
+//funcionalidad boton compra venta de criptos
     let addButton = document.getElementById("btn-alta");
     addButton.addEventListener("click", showForm);
 
@@ -74,8 +73,33 @@
          let sectAddMovements = document.getElementById("movimiento-activo");
          sectAddMovements.classList.remove("hide-form");
 
-
-
-
      }
+
+// funcionalidad calcular
+     let buttonCalcular = document.getElementById("aceptar");
+     buttonCalcular.addEventListener("click", calcular)
+
+      function calcular(){
+        let data = getDataForm();
+        
+        fetch(`http://localhost:5000/api/v1/tipo_cambio?moneda_from=${data.moneda_from}&moneda_to=${data.moneda_to}&cantidad_from=${data.cantidad_from}`)
+        .then(response => response.json())
+        .then(data => {
+            let inputQTo = document.getElementById("cantidad_to");
+            let inputPU = document.getElementById("precio_unitario");
+            inputQTo.value = data.quantityTo;
+            inputPU.value = data.unit_price;
+
+        });
+          
+      }
+
+
+
+
+
+
+
+
+
 })(window)

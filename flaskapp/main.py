@@ -67,7 +67,9 @@ def getExchangeType():
     quantityTo = (int(quantityFrom) * float(rate))
     message = {
         "status": "success",
-        "data": {"tipo_cambio": "Precio unitario de la" + currencyTo + "en valor de" + currencyFrom,
+        "data": {"tipo_cambio": "Precio unitario de la" + currencyTo + "en valor de" + currencyFrom, 
+        "unit_price": rate, 
+        "quantityTo":quantityTo
         
         }     
     }
