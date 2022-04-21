@@ -73,6 +73,7 @@ def getExchangeType():
         
         }     
     }
+    message.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(message)
 
 

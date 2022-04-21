@@ -81,8 +81,15 @@
 
       function calcular(){
         let data = getDataForm();
+        let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+ 
         
-        fetch(`http://localhost:5000/api/v1/tipo_cambio?moneda_from=${data.moneda_from}&moneda_to=${data.moneda_to}&cantidad_from=${data.cantidad_from}`)
+        fetch(`http://localhost:5000/api/v1/tipo_cambio?moneda_from=${data.moneda_from}&moneda_to=${data.moneda_to}&cantidad_from=${data.cantidad_from}`, {mode: 'no-cors',
+        method: 'GET',
+        headers: headers})
         .then(response => response.json())
         .then(data => {
             let inputQTo = document.getElementById("cantidad_to");
