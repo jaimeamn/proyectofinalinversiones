@@ -1,12 +1,13 @@
 (function(window) {
+
 'use strict';
     function getMovements() {
         fetch('http://localhost:5000/api/v1/movimientos')
             .then(response => response.json())
-            .then(data => renderData("tbody-movimientos", data));
+            .then(data => renderMovements("tbody-movimientos", data));
     }
 
-    function renderData(target, data) {
+    function renderMovements(target, data) {
 
         let elementTarget = document.getElementById(target);
 
@@ -36,7 +37,7 @@
 
     function saveMovement() {
         let data = {data:getDataForm()};
-        const client = new XMLHttpRequest();
+        //const client = new XMLHttpRequest();
         fetch('http://localhost:5000/api/v1/movimiento', {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
@@ -100,13 +101,6 @@
         });
           
       }
-
-
-
-
-
-
-
 
 
 })(window)

@@ -1,6 +1,4 @@
-from email import message
-from sqlite3 import Cursor
-from unittest import result
+
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from flaskapp.data_access import operation
@@ -36,11 +34,8 @@ def handleResponse(body, status):
     
     return json
 
-if __name__ == '__main__':
-    app.run(debug=True)
-#@app.teardown_appcontext
-#def closedb():
-#   SqliteConnection.close_connection()
+
+
 
 
 @app.route("/api/v1/movimiento", methods=['POST'])
@@ -62,8 +57,8 @@ def getExchangeType():
     currencyFrom = request.args.get("moneda_from")
     currencyTo = request.args.get("moneda_to")
     quantityFrom = request.args.get("cantidad_from")
-    resultExchance = coin_api_conection.getExchange(currencyFrom, currencyTo)
-    rate = resultExchance["rate"]
+    resultExchange = coin_api_conection.getExchange(currencyFrom, currencyTo)
+    rate = resultExchange["rate"]
     quantityTo = (int(quantityFrom) * float(rate))
     message = {
         "status": "success",
@@ -73,17 +68,12 @@ def getExchangeType():
         
         }     
     }
-    message.headers.add('Access-Control-Allow-Origin', '*')
+   # message.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(message)
 
 
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
      
   
 
