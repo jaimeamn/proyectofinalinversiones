@@ -26,7 +26,15 @@
             elementTarget.innerHTML += tbodyConten;
 
         });
-
+        let uno = -10;
+        if (uno < 0) {
+            let val_invertido = document.querySelector('#val-invertido');
+            let val_val = document.querySelector('#val-valor');
+            val_invertido.style.color = 'red';
+            val_val.style.color = 'green';
+            // val_invertido.classList.add('color-rojo');
+            // val_invertido.className = 'color-rojo';
+        }
     }
 
     window.addEventListener('load', function() {
@@ -82,22 +90,15 @@
 
       function calcular(){
         let data = getDataForm();
-        let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
- 
         
-        fetch(`http://localhost:5000/api/v1/tipo_cambio?moneda_from=${data.moneda_from}&moneda_to=${data.moneda_to}&cantidad_from=${data.cantidad_from}`, {mode: 'no-cors',
-        method: 'GET',
-        headers: headers})
+        fetch(`http://localhost:5000/api/v1/tipo_cambio?moneda_from=${data.moneda_from}&moneda_to=${data.moneda_to}&cantidad_from=${data.cantidad_from}`)
         .then(response => response.json())
-        .then(data => {
+        .then(response => {
+            let data = response.data;
             let inputQTo = document.getElementById("cantidad_to");
             let inputPU = document.getElementById("precio_unitario");
-            inputQTo.value = data.quantityTo;
-            inputPU.value = data.unit_price;
-
+            inputQTo.value = Number(data.quantityTo);
+            inputPU.value = Number(data.unit_price);            
         });
           
       }

@@ -30,36 +30,55 @@
     </header>
    
     <section class="container"  >
-    
-        <table  class="movimientos table table-bordered table-hover table-stripped text-center caption-top">
-            <caption> Movimiento de Criptos</caption>
-            <thead>
-                <tr class="table-primary">
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>moneda from</th>
-                    <th>cantidad from</th>
-                    <th>moneda to</th>
-                    <th>cantidad to</th>
-                </tr>
-            </thead>
-            <tbody id="tbody-movimientos"> </tbody>
-        </table>
-        <button class = "btn btn-sm btn-primary d-inline" id="btn-alta">Compra Venta de Criptos</button>
-        <div class="table-responsive  row justify-content-end">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>invertij</th>
-                        <th>Valor</th>
-                        <th>Resultado</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="row">
+            <div class="col-8">
+                <table  class="movimientos table table-bordered table-hover table-stripped text-center caption-top">
+                    <caption> Movimiento de Criptos</caption>
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>moneda from</th>
+                            <th>cantidad from</th>
+                            <th>moneda to</th>
+                            <th>cantidad to</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-movimientos"> </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <h4 class="mt-4 mb-2">Estado de la inversión</h4>
+                <table class="table table-bordered">
+                    <style>
+                        tbody#estado-inversion tr th,
+                        tbody#estado-inversion tr td {
+                            text-align: center;
+                            font-weight: bold;
+                        }
+                    </style>
+                    <tbody id="estado-inversion">
+                        <tr>
+                            <th>Invertido:</th>
+                            <td><span id="val-invertido">$ 0</span></td>
+                        </tr>
+                        <tr>
+                            <th>Valor</th>
+                            <td><span id="val-valor">$ 0</span></td>
+                        </tr>
+                        <tr>
+                            <th>Resultado</th>
+                            <td><span id="val-resultado">$ 0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-       
-        
+        <div class="row">
+            <div class="col-12">
+                <button class = "btn btn-sm btn-primary d-inline" id="btn-alta">Compra Venta de Criptos</button>
+            </div>
+        </div>
     </section>
     <section class="container row justify-content-end" >
        

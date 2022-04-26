@@ -1,3 +1,4 @@
+import flask;
 
 from flask_cors import CORS
 from flask import Flask, jsonify, request
@@ -57,7 +58,10 @@ def getExchangeType():
     currencyFrom = request.args.get("moneda_from")
     currencyTo = request.args.get("moneda_to")
     quantityFrom = request.args.get("cantidad_from")
+
+    #print({currencyFrom, currencyTo, quantityFrom})
     resultExchange = coin_api_conection.getExchange(currencyFrom, currencyTo)
+
     rate = resultExchange["rate"]
     quantityTo = (int(quantityFrom) * float(rate))
     message = {
@@ -68,7 +72,11 @@ def getExchangeType():
         
         }     
     }
-   # message.headers.add('Access-Control-Allow-Origin', '*')
+
+    # response = flask.make_response(message)
+    # response.headers['Access-Control-Allow-Origin'] = '*'
+    # response.headers['Access-Control-Allow-Credentials'] = 'true'
+         
     return jsonify(message)
 
 
