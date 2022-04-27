@@ -22,33 +22,17 @@ def getMovements():
      response = handleResponse(movements, status)     
      return jsonify(response)
 
-
-def handleResponse(body, status):
-    json = {}
-    if status != "success":
-        json["status"] = status
-        json["message"] = "error en servicio"
-    
-    else:
-        json ["status"] = status
-        json["data"] = body
-    
-    return json
-
-
-
-
-
 @app.route("/api/v1/movimiento", methods=['POST'])
 
 def saveMovement():
     data = request.get_json()
     movement = data["data"]
     response = operation.saveMovement(movement)
+
     messageValidation = {
         "status": "success",
         "id": response[0],
-        "monedas":  [response [3], response[5]]
+        "monedas":  [response[3], response[5]]
     }
     return jsonify(messageValidation)
 
@@ -66,7 +50,7 @@ def getExchangeType():
     quantityTo = (int(quantityFrom) * float(rate))
     message = {
         "status": "success",
-        "data": {"tipo_cambio": "Precio unitario de la" + currencyTo + "en valor de" + currencyFrom, 
+        "data": {"tipo_cambio": "Precio unitario de " + currencyTo + "en valor de " + currencyFrom, 
         "unit_price": rate, 
         "quantityTo":quantityTo
         
@@ -78,6 +62,19 @@ def getExchangeType():
     # response.headers['Access-Control-Allow-Credentials'] = 'true'
          
     return jsonify(message)
+
+
+def handleResponse(body, status):
+    json = {}
+    if status != "success":
+        json["status"] = status
+        json["message"] = "error en servicio"
+    
+    else:
+        json ["status"] = status
+        json["data"] = body
+    
+    return json
 
 
 if __name__ == '__main__':

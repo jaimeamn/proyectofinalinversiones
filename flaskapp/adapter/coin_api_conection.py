@@ -12,7 +12,6 @@ def getExchange(base, quota):
    url = COIN_API_URL_BASE + "/" + base + "/" + quota
    headers = {'X-CoinAPI-Key' : COIN_API_KEY}
    response = requests.get(url, headers=headers)
-   
    return response.json()
 
 

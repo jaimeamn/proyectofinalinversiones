@@ -1,6 +1,8 @@
 (function(window) {
 
 'use strict';
+
+//funcionalidad listar todos los movimientos
     function getMovements() {
         fetch('http://localhost:5000/api/v1/movimientos')
             .then(response => response.json())
@@ -37,9 +39,7 @@
         }
     }
 
-    window.addEventListener('load', function() {
-        getMovements();
-    });
+    
 
     // peticion crear movimiento
 
@@ -61,18 +61,7 @@
     let okButton = document.getElementById("ok");
     okButton.addEventListener("click", saveMovement);
 
-    function getDataForm(){ 
-        let fromValue = document.getElementById("from").value;
-        let toValue = document.getElementById("to").value;
-        let quantityFromValue = document.getElementById("cantidad_from").value;
-        let quantityToValue = document.getElementById("cantidad_to").value;
-        return{ moneda_from: fromValue,
-                 moneda_to: toValue,
-                 cantidad_from:quantityFromValue,
-                 cantidad_to:quantityToValue
-
-        }
-    }
+    
 
 //funcionalidad boton compra venta de criptos
     let addButton = document.getElementById("btn-alta");
@@ -103,5 +92,25 @@
           
       }
 
+      //helpers
+      function getDataForm(){ 
+        let fromValue = document.getElementById("from").value;
+        let toValue = document.getElementById("to").value;
+        let quantityFromValue = document.getElementById("cantidad_from").value;
+        let quantityToValue = document.getElementById("cantidad_to").value;
+
+
+        return{ moneda_from: fromValue,
+                 moneda_to: toValue,
+                 cantidad_from:quantityFromValue,
+                 cantidad_to:quantityToValue
+
+        }
+    }
+
+    //init
+    window.addEventListener('load', function() {
+        getMovements();
+    });
 
 })(window)

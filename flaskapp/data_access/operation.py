@@ -1,26 +1,27 @@
 from flaskapp.data_access.SqliteConnection import dbConnection
 from datetime import date
 from datetime import datetime
+from flaskapp.data_access import *
 
 def getAllMovements():
     conn = dbConnection.getConnection()
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM movimientos')
-    list = cursorToDictionary(cursor)
+    cursor.execute(GET_ALL_MOVEMENTS_QUERY)
+    list = _cursorToDictionary(cursor)
     
     return list
 
-def cursorToDictionary(cursor):
+def _cursorToDictionary(cursor):
     list = []
     for row in cursor: 
         movement = {}
-        movement["id"] = row[0]
-        movement["fecha"] = row[1]
-        movement["hora"] = row[2]
-        movement["moneda_from"] = row[3]
-        movement["cantidad_from"] = row[4]
-        movement["moneda_to"] = row[5]
-        movement["cantidad_to"] = row[6]
+        movement["id"] = row[COLUMN_ID]
+        movement["fecha"] = row[COLUMN_FECHA]
+        movement["hora"] = row[COLUMN_HORA]
+        movement["moneda_from"] = row[COLUMN_CANTIDAD_FROM]
+        movement["cantidad_from"] = row[COLUMN_CANTIDAD_FROM]
+        movement["moneda_to"] = row[COLUMN_MONEDA_TO]
+        movement["cantidad_to"] = row[COLUMN_CANTIDAD_TO]
         list.append(movement)
         
     return list
@@ -28,8 +29,7 @@ def cursorToDictionary(cursor):
 def saveMovement(movement):
     conn = dbConnection.getConnection()
     cursor = conn.cursor()
-    query = ('INSERT INTO movimientos(fecha,hora,moneda_from,cantidad_from,moneda_to,cantidad_to) '
-         'VALUES (:fecha, :hora, :moneda_to, :cantidad_to, :moneda_from, :cantidad_from);')
+    query = (SAVE_MOVEMENT_QUERY)
     
     completeDate = str(datetime.now())
     date = completeDate.split(" ")[0]
@@ -53,7 +53,7 @@ def saveMovement(movement):
 def getCreatedMovement(params):
     conn = dbConnection.getConnection()
     cursor = conn.cursor()
-    query = ('SELECT * FROM movimientos WHERE fecha=? and hora=? and moneda_to=? and cantidad_to=? and moneda_from=? and cantidad_from=?')
+    query = (CREATED_MOVEMENT_QUERY)
     cursor.execute(query, (params["fecha"], params["hora"], params["moneda_from"], params["cantidad_from"], params["moneda_to"], params["cantidad_to"]))
     movement = cursor.fetchone()
     return movement
