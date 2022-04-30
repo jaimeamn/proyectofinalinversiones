@@ -75,10 +75,17 @@ def handleResponse(body, status):
         json["data"] = body
     
     return json
-
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+@app.route("/api/v1/status", methods=['GET'])
+
+def 
+
+
+
      
   
 

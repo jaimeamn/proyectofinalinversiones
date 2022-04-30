@@ -1,3 +1,4 @@
+from ast import Param
 from flaskapp.data_access.SqliteConnection import dbConnection
 from datetime import date
 from datetime import datetime
@@ -57,6 +58,18 @@ def getCreatedMovement(params):
     cursor.execute(query, (params["fecha"], params["hora"], params["moneda_from"], params["cantidad_from"], params["moneda_to"], params["cantidad_to"]))
     movement = cursor.fetchone()
     return movement
+
+def getBalanceEurosInvested():
+    conn = dbConnection.getConnection()
+    cursor = conn.cursor()
+    query = (GET_BALANCE_EUROS_INVESTED)
+    cursor.execute(query,("EUR", "EUR"))
+    balance = cursor.fetchone()
+    return balance 
+
+
+
+
     
 
 
