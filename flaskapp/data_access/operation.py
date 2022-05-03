@@ -67,8 +67,28 @@ def getBalanceEurosInvested():
     balance = cursor.fetchone()
     return balance 
 
+def currentValueCriptoToEuro():
+    conn = dbConnection.getConnection()
+    cursor = conn.cursor()
+    query = (CURRENT_VALUE_CRIPTO_TO_EURO)
+    currencyValueResult = {}
+    for currency in CURRENCIES:
+        cursor.execute(query,(currency,currency))
+        currencyValueResult[currency] = cursor.fetchone()
+
+    return currencyValueResult
+    
+        
 
 
+
+"""
+Valor actual en euros de nuestras criptos: Al existir varias posibles criptos debemos 
+• Para cada cripto obtener su total como: La suma de Cantidad_to de todos los 
+movimientos cuya Moneda_to es la cripto en cuestión menos la suma de 
+Cantidad_from de todos los movimientos cuya Moneda_from es la cripto en 
+cuestión
+"""
 
     
 

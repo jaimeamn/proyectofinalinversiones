@@ -1,3 +1,4 @@
+import re
 import flask;
 
 from flask_cors import CORS
@@ -82,7 +83,11 @@ if __name__ == '__main__':
 
 @app.route("/api/v1/status", methods=['GET'])
 
-def 
+def getInversionStatus():
+     results = operation.currentValueCriptoToEuro()
+     print(results)
+     return jsonify(results)
+
 
 
 
