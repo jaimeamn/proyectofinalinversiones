@@ -19,7 +19,7 @@ def _cursorToDictionary(cursor):
         movement["id"] = row[COLUMN_ID]
         movement["fecha"] = row[COLUMN_FECHA]
         movement["hora"] = row[COLUMN_HORA]
-        movement["moneda_from"] = row[COLUMN_CANTIDAD_FROM]
+        movement["moneda_from"] = row[COLUMN_MONEDA_FROM]
         movement["cantidad_from"] = row[COLUMN_CANTIDAD_FROM]
         movement["moneda_to"] = row[COLUMN_MONEDA_TO]
         movement["cantidad_to"] = row[COLUMN_CANTIDAD_TO]

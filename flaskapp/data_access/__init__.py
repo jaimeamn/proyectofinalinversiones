@@ -1,5 +1,5 @@
-CREATED_MOVEMENT_QUERY="SELECT * FROM movimientos WHERE fecha=? and hora=? and moneda_to=? and cantidad_to=? and moneda_from=? and cantidad_from=?"
-SAVE_MOVEMENT_QUERY="INSERT INTO movimientos(fecha,hora,moneda_from,cantidad_from,moneda_to,cantidad_to) VALUES (:fecha, :hora, :moneda_to, :cantidad_to, :moneda_from, :cantidad_from);"
+CREATED_MOVEMENT_QUERY="SELECT * FROM movimientos WHERE fecha=? and hora=? and moneda_from=? and cantidad_from=? and moneda_to=? and cantidad_to=?"
+SAVE_MOVEMENT_QUERY="INSERT INTO movimientos(fecha,hora,moneda_from,cantidad_from,moneda_to,cantidad_to) VALUES (:fecha, :hora, :moneda_from, :cantidad_from, :moneda_to, :cantidad_to);"
 GET_ALL_MOVEMENTS_QUERY="SELECT * FROM movimientos"
 GET_BALANCE_EUROS_INVESTED="SELECT SUM(cantidad_to)-SUM(cantidad_from) AS balance FROM movimientos WHERE moneda_to=? and moneda_from=?"
 CURRENT_VALUE_CRIPTO_TO_EURO="SELECT SUM(cantidad_to)-(SELECT SUM(cantidad_from)FROM movimientos WHERE Moneda_from=?) AS value FROM movimientos WHERE Moneda_to=?"
