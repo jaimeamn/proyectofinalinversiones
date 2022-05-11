@@ -33,7 +33,7 @@ pip install -r requirements.txt
 **crea base de datos**
 Crear una base de datos desde el mandato sql que se encuentra en Basedatos/crea_tablas.sql
 
-
+## Clonar repositorio
 ```
 $ git clone https://github.com/jaimeamn/proyectofinalinversiones.git
 $ cd ../path/to/the/file
@@ -45,5 +45,3 @@ Desde el terminal
 
 flask run
 
-|:--------------|:-------------:|--------------:|
-| text-align left | text-align center | text-align right |
