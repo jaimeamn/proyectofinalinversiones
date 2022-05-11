@@ -3,6 +3,7 @@ SAVE_MOVEMENT_QUERY="INSERT INTO movimientos(fecha,hora,moneda_from,cantidad_fro
 GET_ALL_MOVEMENTS_QUERY="SELECT * FROM movimientos"
 GET_BALANCE_EUROS_INVESTED="SELECT SUM(cantidad_to)-SUM(cantidad_from) AS balance FROM movimientos WHERE moneda_to=? and moneda_from=?"
 CURRENT_VALUE_CRIPTO_TO_EURO="SELECT SUM(cantidad_to)-(SELECT SUM(cantidad_from)FROM movimientos WHERE Moneda_from=?) AS value FROM movimientos WHERE Moneda_to=?"
+GET_TOTAL_EUROS_INVESTED="SELECT SUM(cantidad_from) FROM movimientos WHERE moneda_from=?"
 CURRENCIES=[
     "BTC",
     "ETH",

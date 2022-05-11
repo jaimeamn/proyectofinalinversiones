@@ -65,16 +65,31 @@ def getBalanceEurosInvested():
     query = (GET_BALANCE_EUROS_INVESTED)
     cursor.execute(query,("EUR", "EUR"))
     balance = cursor.fetchone()
-    return balance 
+    print("i",type (balance))
+    return balance[0]
 
-def currentValueCriptoToEuro():
+
+def getTotalEur():
+    conn = dbConnection.getConnection()
+    cursor = conn.cursor()
+    query = (GET_TOTAL_EUROS_INVESTED)
+    cursor.execute(query,("EUR",))
+    total = cursor.fetchone()
+    print(type (total))
+    return total[0] 
+
+def currentValueCripto():
     conn = dbConnection.getConnection()
     cursor = conn.cursor()
     query = (CURRENT_VALUE_CRIPTO_TO_EURO)
     currencyValueResult = {}
     for currency in CURRENCIES:
         cursor.execute(query,(currency,currency))
-        currencyValueResult[currency] = cursor.fetchone()
+        criptoValue = cursor.fetchone()
+        if (criptoValue[0] is not None):
+            currencyValueResult[currency] = criptoValue[0]
+    
+            print(type(criptoValue))
 
     return currencyValueResult
     

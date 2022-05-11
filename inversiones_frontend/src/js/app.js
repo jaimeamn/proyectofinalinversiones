@@ -108,11 +108,7 @@
         }
     }
 
-      function status(){
-          
-
-
-      }
+     
 
     //init
     window.addEventListener('load', function() {

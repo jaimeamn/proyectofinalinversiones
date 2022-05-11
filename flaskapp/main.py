@@ -1,4 +1,5 @@
 import re
+from urllib import response
 import flask;
 
 from flask_cors import CORS
@@ -80,13 +81,30 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
 @app.route("/api/v1/status", methods=['GET'])
 
 def getInversionStatus():
-     results = operation.currentValueCriptoToEuro()
+     results = operation.currentValueCripto()
      print(results)
-     return jsonify(results)
+     theCriptoToEuro = 0
+     for currency in results.keys():
+         response = coin_api_conection.getExchange(currency, "EUR")
+         rate = response["rate"]
+         quantityEur = (int(results[currency]) * float(rate))
+         theCriptoToEuro += quantityEur
+     totalEur = operation.getTotalEur()    
+     currentValue =  totalEur + operation.getBalanceEurosInvested() + theCriptoToEuro
+     message = {
+        "status": "success",
+        "data": {"invertido": totalEur, 
+        "valor_actual": currentValue
+        
+        }     
+    }
+         
+     return jsonify(message)
+
+
 
 
 
